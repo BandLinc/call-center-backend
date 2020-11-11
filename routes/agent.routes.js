@@ -5,5 +5,5 @@ module.exports = (app) => {
   app.get("/agents", agents.findAll);
 
   // Retrieve a single Customer with customerId
-  app.get("/agent/:username", agents.findOne);
+  app.get("/agents/:username", agents.findOne);
 };
