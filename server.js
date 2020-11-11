@@ -14,8 +14,9 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to Call Center Application." });
 });
 
+const PORT = process.env.PORT || 3000;
 require("./routes/customer.routes.js")(app);
 // set port, listen for requests
-app.listen(3000, () => {
-  console.log("Server is running on port 3000.");
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
 });
