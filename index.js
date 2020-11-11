@@ -51,4 +51,8 @@ app.get("/agent/:username", (req, res) => {
   );
 });
 
+app.get("/", (req, res) => {
+  res.send("Welcome");
+});
+
 //get specific kpi for agent
