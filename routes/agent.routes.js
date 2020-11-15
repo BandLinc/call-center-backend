@@ -1,3 +1,4 @@
+var cors = require("cors");
 module.exports = (app) => {
   const agents = require("../controllers/agent.controller.js");
 
