@@ -41,7 +41,7 @@ const Agent = function (agent) {
 //Select Agent by username
 Agent.findById = (Username, result) => {
   sql.query(
-    `SELECT * FROM d_dailyagent WHERE Username = '${Username}'`,
+    `SELECT ID,Username,Name,Segment,Family,Adherence,CA,AHT,AHOT,Occupancy,NPS,Shortcalls,Satisfaction FROM d_dailyagent WHERE Username = '${Username}'`,
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -63,16 +63,19 @@ Agent.findById = (Username, result) => {
 
 //Return all the agents
 Agent.getAll = (result) => {
-  sql.query("SELECT * FROM d_dailyagent", (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-      return;
-    }
+  sql.query(
+    "SELECT ID,Username,Name,Segment,Family,Adherence,CA,AHT,AHOT,Occupancy,NPS,Shortcalls,Satisfaction FROM d_dailyagent",
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
 
-    console.log("agents: ", res);
-    result(null, res);
-  });
+      console.log("agents: ", res);
+      result(null, res);
+    }
+  );
 };
 
 module.exports = Agent;
