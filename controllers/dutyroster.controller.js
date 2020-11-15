@@ -1,7 +1,7 @@
 const DutyRoster = require("../models/dutyroster.model.js");
 
 // Retrieve all Customers from the database.
-exports.findAll = (req, res) => {
+exports.findAll = (req, res, next) => {
   DutyRoster.getAll((err, data) => {
     if (err)
       res.status(500).send({
@@ -13,7 +13,7 @@ exports.findAll = (req, res) => {
 };
 
 // Find a single Roster for the Date
-exports.findOne = (req, res) => {
+exports.findOne = (req, res, next) => {
   DutyRoster.findById(req.params.date, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
