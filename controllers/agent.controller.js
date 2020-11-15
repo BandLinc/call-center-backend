@@ -1,7 +1,7 @@
 const Agent = require("../models/agent.model.js");
 
 // Retrieve all Customers from the database.
-exports.findAll = (req, res) => {
+exports.findAll = (req, res, next) => {
   Agent.getAll((err, data) => {
     if (err)
       res.status(500).send({
@@ -11,8 +11,8 @@ exports.findAll = (req, res) => {
   });
 };
 
-// Find a single Angent with a Username
-exports.findOne = (req, res) => {
+// Find a single Agent with a Username
+exports.findOne = (req, res, next) => {
   Agent.findById(req.params.username, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
