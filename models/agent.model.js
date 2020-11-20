@@ -40,27 +40,27 @@ const Agent = function (agent) {
 
 //Select Agent by username
 Agent.findById = (Username, result) => {
-  sql.query(
-    `SELECT ID,Username,Name,Segment,Family,Adherence,CA,AHT,AHOT,
-    Occupancy,NPS,Shortcalls,
-    Satisfaction,FCR,'NotReady(M)','HoldTime(S)' FROM d_dailyagent WHERE Username = '${Username}'`,
-    (err, res) => {
-      if (err) {
-        console.log("error: ", err);
-        result(err, null);
-        return;
-      }
-
-      if (res.length) {
-        console.log("found Agent: ", res[0]);
-        result(null, res[0]);
-        return;
-      }
-
-      // not found Customer with the id
-      result({ kind: "not_found" }, null);
+  var query;
+  query = `SELECT ID,Username,Name,Segment,Family,Adherence,CA,AHT,AHOT,
+  Occupancy,NPS,Shortcalls,
+  Satisfaction,FCR,NotReady_M,HoldTime_S,Resolution FROM d_dailyagent WHERE Username = '${Username}'`;
+  //console.log(query);
+  sql.query(query, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
     }
-  );
+
+    if (res.length) {
+      console.log("found Agent: ", res[0]);
+      result(null, res[0]);
+      return;
+    }
+
+    // not found Customer with the id
+    result({ kind: "not_found" }, null);
+  });
 };
 
 //Return all the agents
