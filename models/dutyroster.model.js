@@ -11,7 +11,7 @@ const DutyRoster = function (agent) {
   this.FOLDER = DutyRoster.FOLDER;
   this.Date = DutyRoster.Date;
   this.Submitter = DutyRoster.Submitter;
-  this.SubmitTime = DutyRoster.Submitter;
+  this.SubmitTime = DutyRoster.SubmitTime;
 };
 
 //Select Duty Roster by Date
@@ -45,6 +45,20 @@ DutyRoster.getAll = (result) => {
 
     console.log("agents: ", res);
     result(null, res);
+  });
+};
+
+//Add Duty Roster
+DutyRoster.create = (dutyroster, result) => {
+  sql.query("INSERT INTO dutyroster SET ?", dutyroster, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    console.log("created customer: ", { id: res.insertId, ...dutyroster });
+    result(null, { id: res.insertId, ...dutyroster });
   });
 };
 

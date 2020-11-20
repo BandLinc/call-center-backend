@@ -41,7 +41,9 @@ const Agent = function (agent) {
 //Select Agent by username
 Agent.findById = (Username, result) => {
   sql.query(
-    `SELECT ID,Username,Name,Segment,Family,Adherence,CA,AHT,AHOT,Occupancy,NPS,Shortcalls,Satisfaction FROM d_dailyagent WHERE Username = '${Username}'`,
+    `SELECT ID,Username,Name,Segment,Family,Adherence,CA,AHT,AHOT,
+    Occupancy,NPS,Shortcalls,
+    Satisfaction,FCR,'NotReady(M)','HoldTime(S)' FROM d_dailyagent WHERE Username = '${Username}'`,
     (err, res) => {
       if (err) {
         console.log("error: ", err);
