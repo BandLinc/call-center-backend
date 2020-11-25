@@ -12,16 +12,19 @@ const PendingIssues = function (agent) {
 
 //Return all the Issues that are Pending
 PendingIssues.getAll = (result) => {
-  sql.query("SELECT * FROM pendingissues", (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-      return;
-    }
+  sql.query(
+    "select * from pendingissues order by SubmitDate desc limit 3",
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
 
-    console.log("pendingissues: ", res);
-    result(null, res);
-  });
+      console.log("pendingissues: ", res);
+      result(null, res);
+    }
+  );
 };
 
 module.exports = PendingIssues;
