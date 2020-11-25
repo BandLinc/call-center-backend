@@ -37,6 +37,8 @@ const PORT = process.env.PORT || 3000;
 require("./routes/customer.routes.js")(app);
 require("./routes/agent.routes.js")(app);
 require("./routes/dutyroster.routes.js")(app);
+require("./routes/managers.routes.js")(app);
+require("./routes/pendingissues.routes.js")(app);
 
 // set port, listen for requests
 app.listen(PORT, () => {

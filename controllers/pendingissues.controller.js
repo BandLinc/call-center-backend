@@ -1,12 +1,12 @@
-const DutyRoster = require("../models/dutyroster.model.js");
+const PendingIssues = require("../models/pendingissues.model.js");
 
-// Retrieve all Customers from the database.
+// Retrieve all the logged issues
 exports.findAll = (req, res, next) => {
-  DutyRoster.getAll((err, data) => {
+  PendingIssues.getAll((err, data) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving Duty Roster.",
+          err.message || "Some error occurred while retrieving Pending issues.",
       });
     else res.send(data);
   });
